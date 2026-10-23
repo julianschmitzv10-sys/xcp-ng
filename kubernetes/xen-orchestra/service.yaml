@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: xen-orchestra
+  namespace:  xen-orchestra
+spec:
+  type: ClusterIP
+  selector:
+    app:  xen-orchestra
+  
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+      protocol: TCP
