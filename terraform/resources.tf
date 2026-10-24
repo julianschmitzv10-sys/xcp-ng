@@ -15,7 +15,7 @@ data "xenorchestra_template" "template" {
 }
 
 data "xenorchestra_vdi" "ubuntu-iso" {
-    id = "a8da01c3-0755-406f-8456-26e7589703a8"
+    id = "0ab9f7ac-4cc3-430f-978b-e493016814f0"
 }
 
 data "xenorchestra_network" "net" {
@@ -28,8 +28,10 @@ resource "xenorchestra_vm" "demo-vm" {
   }
   cpus = 2
   memory_max = 2147483648
-  name_label = "Ubuntu26-testing-1"
+  name_label = "Ubuntu24-testing-1"
   template = data.xenorchestra_template.template.id
+#   cloud_config = xenorchestra_cloud_config.demo-config.template
+#   cloud_network_config = xenorchestra_cloud_config.demo-net-config.template
   cdrom {
     id = data.xenorchestra_vdi.ubuntu-iso.id
   }
