@@ -16,14 +16,14 @@ output "networks" {
     }
 }
 
-# output "pool" {
-#     description = "Bootstraped pool"
+output "resource_set" {
+    description = "Bootstraped resource set"
 
-#     value = {
-#         id = data.xenorchestra_pool.pool.id
-#         name = data.xenorchestra_pool.pool.name_label
-#     }
-# }
+    value = {
+        id = resource.xenorchestra_resource_set.tier1.id
+        name = resource.xenorchestra_resource_set.tier1.name
+    }
+}
 
 output "storage" {
     description = "Bootstraped storgae repository"

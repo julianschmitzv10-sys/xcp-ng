@@ -20,6 +20,10 @@ data "xenorchestra_template" "template" {
   name_label = "Ubuntu Noble Numbat 24.04"
 }
 
+data "xenorchestra_template" "ubuntu-26-04-1" {
+  name_label = "Ubuntu-26.04.1_clone-template"
+}
+
 data "xenorchestra_vdi" "ubuntu-iso" {
     # id = "0ab9f7ac-4cc3-430f-978b-e493016814f0"
     pool_id = data.xenorchestra_pool.pool.id

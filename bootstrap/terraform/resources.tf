@@ -39,4 +39,33 @@ resource "xenorchestra_vm" "template-target_Ubuntu-26-04-1" {
       name_label = "local"
       size = 32212254720
   }
+  tags = ["tf-provisoned", "use clone as template"]
+}
+
+resource "xenorchestra_resource_set" "tier1" {
+
+    name = "Tier 1: 6 CPUs, 9GB RAM, 100GB NVME"
+
+    objects = [
+        data.xenorchestra_template.ubuntu-26-04-1.id,
+        data.xenorchestra_sr.local_storage.id,
+        resource.xenorchestra_network.mgmt.id,
+        resource.xenorchestra_network.staging.id
+    ]
+
+    limit {
+        type = "cpus"
+        quantity = 6
+    }
+
+    limit {
+        type = "disk"
+        quantity = 107374182400
+    }
+
+    limit {
+        type = "memory"
+        quantity = 6442450944
+    }
+  
 }
