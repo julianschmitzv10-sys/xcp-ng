@@ -2,8 +2,8 @@
 artifacts/
 
 # tf/ot
-terraform/.terraform/
-terraform/*.tfstate
-terraform/*.tfstate.*
-terraform/crash.log
-terraform/crash.*.log
+*/terraform/.terraform/
+*/terraform/*.tfstate
+*/terraform/*.tfstate.*
+*/terraform/crash.log
+*/terraform/crash.*.log

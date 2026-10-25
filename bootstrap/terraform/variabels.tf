@@ -1,3 +1,5 @@
+# variables.tf
+
 variable "xo_token" {
     description = "Xen Orchestra API token"
     type = string
