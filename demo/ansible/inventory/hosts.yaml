@@ -1,0 +1,12 @@
+"all":
+  "children":
+    "demo":
+      "hosts":
+        "demo-1":
+          "ansible_host": "10.0.4.212"
+        "demo-2":
+          "ansible_host": "10.0.4.129"
+        "demo-3":
+          "ansible_host": "10.0.4.208"
+      "vars":
+        "ansible_user": "ansible"

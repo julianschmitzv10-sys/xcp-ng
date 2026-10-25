@@ -1,0 +1,14 @@
+#cloud-config
+
+
+hostname: ${hostname}
+
+late-commands:
+    - curtin in-target -- cloud-init clean --seed
+
+runcmd:
+  - [mkdir, -p, /mnt/guest-tools]
+  - [mount, /dev/cdrom, /mnt/guest-tools]
+  - [bash, /mnt/guest-tools/Linux/install.sh]
+  - [umount, /dev/cdrom]
+  - [rm, -rf, /mnt/guest-tools]

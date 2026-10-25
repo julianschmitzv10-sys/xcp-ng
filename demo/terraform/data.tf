@@ -11,3 +11,9 @@ data "terraform_remote_state" "bootstrap" {
         path = "${path.module}/../../bootstrap/terraform/terraform.tfstate"
     }
 }
+
+data "xenorchestra_vdi" "guest-tools-iso" {
+    # name_label = "guest-tools.iso"
+    id = "73b8c062-fe4a-4dc0-a148-e5062e1efdce"
+}
+
