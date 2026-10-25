@@ -29,7 +29,7 @@ resource "xenorchestra_vm" "template-target_Ubuntu-26-04-1" {
   memory_max = 2147483648
   name_label = "Ubuntu-26.04.1"
   template = data.xenorchestra_template.template.id
-  cloud_config = xenorchestra_cloud_config.demo-config.template
+  cloud_config = xenorchestra_cloud_config.template-config.template
 #   cloud_network_config = xenorchestra_cloud_config.demo-net-config.template
   cdrom {
     id = data.xenorchestra_vdi.ubuntu-iso.id

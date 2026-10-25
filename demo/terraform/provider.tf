@@ -6,10 +6,6 @@ terraform {
         source = "vatesfr/xenorchestra"
         version = "0.41.2"
     }
-    # local = {
-    #     source = "hashicorp/local"
-    #     version = "~> 2.0"
-    # }
   }
 }
 

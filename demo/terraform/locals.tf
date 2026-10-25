@@ -8,7 +8,6 @@ locals {
         for i in range(local.vm_count) :
             "vm${i+1}" => {
                 name = "demo-${i+1}"
-                # cloud_config = xenorchestra_cloud_config.demo-config-1.template
                 config_name = "demo cloud config ${i+1}"
             }
     }
