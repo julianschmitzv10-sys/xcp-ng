@@ -1,7 +1,7 @@
 ---
 - name: Test connection to all VMs
   hosts: demo
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: Ansible ping (SSH + Python check)
       ansible.builtin.ping:

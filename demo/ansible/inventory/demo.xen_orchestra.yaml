@@ -1,0 +1,15 @@
+# demo.xen_orchestra.yaml
+plugin: community.general.xen_orchestra
+api_host: "{{ xo_host }}"
+user: "{{ xo_user }}"
+password: "{{ xo_password }}"
+use_ssl: false
+validate_certs: false
+
+# Conditional groups
+groups:
+  demo: "'demo' in name_label"
+
+# Custom host variables
+compose:
+  ansible_user: "'ansible' if 'demo' in name_label else 'ansible'"
