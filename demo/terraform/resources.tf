@@ -1,34 +1,30 @@
 # resources.tf
 
-resource "xenorchestra_vm" "vms" {
-    for_each = local.vms
-    resource_set = data.terraform_remote_state.bootstrap.outputs.resource_set.id
+moved {
+  from = xenorchestra_vm.vms["vm1"]
+  to   = module.XO_vm-cluster.xenorchestra_vm.node[0]
+}
+moved {
+  from = xenorchestra_vm.vms["vm2"]
+  to   = module.XO_vm-cluster.xenorchestra_vm.node[1]
+}
+moved {
+  from = xenorchestra_vm.vms["vm3"]
+  to   = module.XO_vm-cluster.xenorchestra_vm.node[2]
+}
 
-    network {
-        network_id = data.terraform_remote_state.bootstrap.outputs.networks.management.id
-        expected_ip_cidr = "10.0.4.0/24"
-    }
-
-    network {
-        network_id = data.terraform_remote_state.bootstrap.outputs.networks.staging.id
-        expected_ip_cidr = "10.0.5.0/24"
-    }
-
-    cpus = 2
-    memory_max = 2147483648
-    name_label = each.value.name
-    template = data.xenorchestra_template.template.id
-    cloud_config = xenorchestra_cloud_config.demo-configs[each.key].template
-    
-    cdrom {
-    id = data.xenorchestra_vdi.guest-tools-iso.id
-  }
-
-    disk {
-        sr_id = data.terraform_remote_state.bootstrap.outputs.storage.id
-        name_label = "local"
-        size = 32212254720
-    }
-
-    tags = ["tf-provisioned"]
+module "XO_vm-cluster" {
+  source          = "../../modules/XO_vm-cluster"
+  node_count      = 3
+  resource_set_id = data.terraform_remote_state.bootstrap.outputs.resource_set.id
+  networks        = local.networks
+  cores           = 2
+  RAM_Gb          = 2
+  node_name       = "demo"
+  template_id     = data.xenorchestra_template.template.id
+  # cloud_config_extension = 
+  guest-tools-iso      = data.xenorchestra_vdi.guest-tools-iso.id
+  storage_repositories = local.storage_repositories
+  cluster_name         = "demo"
+  tags                 = ["testing"]
 }
